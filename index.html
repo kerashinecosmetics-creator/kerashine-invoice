@@ -45,7 +45,7 @@ body {
 /* INVOICE */
 .invoice {
     width:190mm;
-    min-height:297mm;
+    min-height:297mm ;
     margin:auto;
     background:white;
     padding:18mm 15mm;
@@ -130,7 +130,10 @@ td:nth-child(4) { text-align:right; }
 
 /* FOOTER */
 .footer {
-    margin-top:40px;
+    position:absolute;
+    bottom:25mm;
+    left:18mm;
+    width:calc(100% - 36mm);
 }
 
 .footer img {
@@ -138,9 +141,11 @@ td:nth-child(4) { text-align:right; }
 }
 
 .footer-text {
-    margin-top:10px;
+    position:absolute;
+    bottom:8mm;
+    left:0;
+    width:100%;
     text-align:center;
-    font-size:11px;
 }
 
 /* PRINT */
@@ -195,7 +200,7 @@ table {
     </div>
     <input id="phone" placeholder="Phone">
     <input id="address" placeholder="Address">
-    <input id="paidInput" placeholder="Amount Paid">
+    <input id="paidInput" type="number" placeholder="Amount Paid">
 
     <table><tbody id="items"></tbody></table>
 
@@ -367,12 +372,40 @@ function downloadPDF(){
     const element = document.getElementById("invoice");
     element.style.display = "block";
 
-    html2pdf().set({
-        margin:0,
-        filename:'Kerashine_Invoice.pdf',
-        html2canvas:{scale:2},
-        jsPDF:{unit:'mm', format:'a4'}
-    }).from(element).save().then(()=>{
+    html2pdf()
+    .from(element)
+    .set({
+        margin: 0,
+        filename: 'Kerashine_Invoice.pdf',
+        image: { type: 'jpeg', quality: 1 },
+
+        html2canvas: {
+            scale: 2,
+            height: element.offsetHeight,
+            windowHeight: element.offsetHeight
+        },
+
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait'
+        },
+
+        // 🔥 MAIN HARD FIX
+        pagebreak: { mode: [] } // ❌ disable all page breaks
+    })
+    .toPdf()
+    .get('pdf')
+    .then(function (pdf) {
+
+        // 🔥 REMOVE ALL EXTRA PAGES
+        while (pdf.internal.getNumberOfPages() > 1) {
+            pdf.deletePage(2);
+        }
+
+    })
+    .save()
+    .then(() => {
         element.style.display = "none";
     });
 }
