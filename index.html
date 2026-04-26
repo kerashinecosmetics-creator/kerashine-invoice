@@ -188,6 +188,15 @@ table {
     page-break-inside: avoid;
 }
 
+.delete-btn {
+    background:red;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
 </style>
 </head>
 
@@ -304,6 +313,7 @@ function addItem(){
             </select>
         </td>
         <td><input type="number" class="price" value="1200"></td>
+        <td><button class="delete-btn" onclick="deleteRow(this)">❌</button></td>
     `;
 
     let select = row.querySelector(".desc");
@@ -318,7 +328,19 @@ function addItem(){
     items.appendChild(row);
 }
 
-addItem();
+function deleteRow(btn){
+    const row = btn.closest("tr");
+
+    const allRows = document.querySelectorAll("#items tr");
+
+    // ❗ FIRST ROW SAFE
+    if(allRows.length <= 1){
+        alert("At least one item required");
+        return;
+    }
+
+    row.remove();
+}
 
 function format(v){
     return "Rs. " + v.toLocaleString() + "/-";
