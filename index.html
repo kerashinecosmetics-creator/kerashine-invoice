@@ -6,6 +6,7 @@
 <title>Kerashine Invoice</title>
 
 <style>
+
 /* RESET */
 body {
     margin:0;
@@ -13,160 +14,113 @@ body {
     font-family: Arial;
 }
 
-/* 🔥 CONTROLS */
+/* CONTROLS */
 .controls {
     padding:20px;
     background:white;
-    position:sticky;
-    top:0;
-    z-index:10;
-    width:100%;
     max-width:500px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.05);
-    border-radius:10px;
-    backdrop-filter: blur(6px);
+    margin:auto;
 }
 
 .controls input,
 .controls select {
-    width:90%;
+    width:100%;
     padding:12px;
     margin-bottom:12px;
     border:1px solid #ddd;
     border-radius:8px;
-    font-size:14px;
-    transition:0.2s;
-}
-
-.controls input:focus,
-.controls select:focus {
-    border-color:#9f4d58;
-    outline:none;
-    box-shadow:0 0 0 2px rgba(159,77,88,0.1);
 }
 
 .controls button {
     width:100%;
-    padding:13px;
+    padding:14px;
     margin-top:10px;
     border:none;
     border-radius:8px;
+    background:#9f4d58;
+    color:white;
     font-size:15px;
-    cursor:pointer;
-    transition:0.2s;
 }
 
-.btn-main { 
-    background:#9f4d58; 
-    color:white; 
-}
-
-.btn-main:hover {
-    background:#873f48;
-}
-
-.btn-secondary { 
-    background:#444; 
-    color:white; 
-}
-
-.btn-secondary:hover {
-    background:#2f2f2f;
-}
-
-/* 🔥 INVOICE */
+/* INVOICE */
 .invoice {
     width:190mm;
-    min-height:297mm;
-    margin:20px auto;
+    height:297mm;
+    margin:auto;
     background:white;
-    padding:30px 35px;
+    padding:25mm 18mm;
+    box-sizing:border-box;
     position:relative;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-    border-radius:10px;
 }
 
 /* HEADER */
 .header img {
     width:100%;
+    margin-bottom:25px;
 }
 
 /* TOP */
 .top {
     display:flex;
     justify-content:space-between;
-    margin-top:20px;
+    margin-bottom:25px;
 }
 
 .left {
     width:60%;
+    font-size:14px;
     line-height:1.6;
 }
 
 .right {
     width:35%;
     text-align:right;
+    font-size:14px;
 }
 
 /* TABLE */
 table {
     width:100%;
-    margin-top:25px;
-    border-collapse:separate;
-    border-spacing:0 8px;
-    table-layout:fixed;
-    page-break-inside:avoid;
+    border-spacing:0 14px;
 }
 
 th {
     background:#9f4d58;
     color:white;
-    padding:12px;
-    font-size:13px;
-    text-align:left;
+    padding:14px;
+    text-align:center;
 }
 
 td {
-    background:#f5f5f5;
-    padding:12px;
-    font-size:13px;
+    background:#f3f3f3;
+    padding:14px;
 }
 
-th:nth-child(1) { width:10%; }
-th:nth-child(2) { width:50%; }
-th:nth-child(3) { width:20%; }
-th:nth-child(4) { width:20%; }
-
-/* COLUMN WIDTH */
-td:nth-child(1) { width:89%; }
-td:nth-child(2) { width:94%; }
-th:nth-child(3) { width:88%; }
-th:nth-child(4) { width:20%; }
+td:nth-child(1) { text-align:center; }
+td:nth-child(3),
+td:nth-child(4) { text-align:right; }
 
 /* TERMS + SUMMARY */
 .row2 {
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    gap:30px;
-    margin-top:40px;
+    margin-top:50px;
 }
 
 .terms {
     width:50%;
     font-size:12px;
-    line-height:1.7;
 }
 
 .summary {
-    width:300px;
+    width:280px;
     font-size:13px;
 }
 
 .summary div {
     display:flex;
     justify-content:space-between;
-    margin-bottom:6px;
+    margin-bottom:8px;
 }
 
 .highlight {
@@ -177,169 +131,27 @@ th:nth-child(4) { width:20%; }
 /* FOOTER */
 .footer {
     position:absolute;
-    bottom:65px;
-    width:95%;
-        left: 35px;
-        height: 185px;
-    }
+    bottom:25mm;
+    left:18mm;
+    width:calc(100% - 36mm);
+}
 
 .footer img {
-    width:94%;
-        height: 187px;
-    }
+    width:100%;
+}
 
 .footer-text {
     position:absolute;
-    bottom:20px;
+    bottom:8mm;
     width:100%;
     text-align:center;
     font-size:11px;
 }
 
-.footer-text div {
-    text-align:center;
-    margin-bottom:3px;
-}
-
-    .controls {
-        max-width:100%;
-        border-radius:12px;
-        margin-bottom:15px;
-    }
-
-    .invoice {
-        width:100%;
-        padding:15px;
-        margin:0;
-        box-shadow:none;
-    }
-
-    /* 🔥 HEADER IMAGE FIX */
-    .header img {
-        width:100%;
-        height:auto;
-    }
-
-    /* 🔥 TOP SECTION STACK */
-    .top {
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .right {
-        text-align:left;
-    }
-
-    /* 🔥 TABLE SCROLL FIX */
-    table {
-        display:block;
-        overflow-x:auto;
-        white-space:nowrap;
-    }
-
-    /* 🔥 TERMS + SUMMARY STACK */
-    .row2 {
-        flex-direction:column;
-        gap:15px;
-    }
-
-    .summary {
-        width:100%;
-    }
-
-    /* 🔥 FOOTER FIX */
-    .footer {
-        position:relative;
-        bottom:0;
-        left:0;
-        width:100%;
-        height:auto;
-        margin-top:30px;
-    }
-
-    .footer img {
-        width:100%;
-        height:auto;
-    }
-
-    .footer-text {
-        position:relative;
-        margin-top:10px;
-    }
-
-/* 🔥 PRINT PERFECT */
+/* PRINT */
 @media print {
-
-    html, body {
-        width:210mm;
-        height:297mm;
-    }
-
-    body {
-        margin:0;
-        background:white;
-        display:block;
-        -webkit-print-color-adjust:exact;
-        print-color-adjust:exact;
-    }
-
-    .controls {
-        display:none;
-    }
-
-    .invoice {
-        width:190mm;
-        height:297mm;
-        margin:0 auto;
-        padding:15mm;
-        box-sizing:border-box;
-        box-shadow:none;
-    }
-
-    table {
-        border-spacing:0 6px;
-    }
-
-    @page {
-        size:A4;
-        margin:0;
-    }
-
-    html, body {
-        margin:0 !important;
-        padding:0 !important;
-    }
-}
-
-/* 🔥 FIX ROW INPUT ALIGNMENT */
-#items td {
-    padding:6px;
-}
-
-.qty {
-    text-align:left;
-    padding-left:12px;
-    font-weight:bold;
-}
-
-#items input,
-#items select {
-    width:195px;
-    height:48px;          /* 🔥 bada aur readable */
-    font-size:16px;
-    padding:10px;
-    border-radius:8px;
-    border:1px solid #ddd;
-    box-sizing:border-box;
-}
-
-/* 🔥 ROW LAYOUT FIX */
-#items tr {
-    display:grid;
-    grid-template-columns: 116px 0fr 115px;
-    gap:10px;
-    margin-bottom:12px;
-    align-items:end;
+    .controls { display:none; }
+    body { background:white; }
 }
 
 .autocomplete-box {
@@ -368,50 +180,12 @@ th:nth-child(4) { width:20%; }
     background:#f5f5f5;
 }
 
-/* 🔥 LABELS */
-.lbl {
-    display:block;
-    font-size:11px;
-    font-weight:bold;
-    margin-bottom:4px;
-    color:#555;
-}
-
-/* 🔥 BIG INPUTS */
-#items input {
-    height: 49px;
-    width: 100px;
-    font-size:15px;
-}
-
-/* 🔥 BIG PRICE */
-.price {
-    font-weight:bold;
-}
-
-@media (max-width: 480px) {
-    .controls input,
-    .controls select {
-        width: 100%;
-    }
-
-    #items tr {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    #items input,
-    #items select {
-        width: 100%;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="controls">
-    <!-- 🔥 Customer Inputs -->
     <div class="autocomplete-box">
         <input id="customerName" placeholder="Customer Name" oninput="searchCustomer()">
         <div id="suggestions" class="suggestions"></div>
@@ -420,19 +194,13 @@ th:nth-child(4) { width:20%; }
     <input id="address" placeholder="Address">
     <input id="paidInput" placeholder="Amount Paid">
 
-    <!-- 🔥 Dynamic Items -->
     <table><tbody id="items"></tbody></table>
 
-    <!-- 🔥 Add Item TOP -->
-    <button class="btn-main" onclick="addItem()">+ Add Item</button>
-
-    <!-- 🔥 Actions -->
-    <button class="btn-main" onclick="generate()">Generate</button>
-    <button class="btn-secondary" onclick="downloadPDF()">Download PDF</button>
-
+    <button onclick="addItem()">+ Add Item</button>
+    <button onclick="downloadPDF()">Download Invoice</button>
 </div>
 
-<div class="invoice">
+<div class="invoice" id="invoice" style="display:none;">
 
     <div class="header">
         <img src="header.png">
@@ -440,14 +208,14 @@ th:nth-child(4) { width:20%; }
 
     <div class="top">
         <div class="left">
-            <b>Issued to: </b><span id="pname"></span><br>
+            <b>Issued to:</b> <span id="pname"></span><br>
             <span id="pphone"></span><br>
             <span id="paddress"></span>
         </div>
 
         <div class="right">
-            <b>Number:</b> <span id="inv"></span><br>
-            <b>Date:</b> <span id="date"></span>
+            <div><b>Number:</b> <span id="inv"></span></div>
+            <div><b>Date:</b> <span id="date"></span></div>
         </div>
     </div>
 
@@ -467,10 +235,9 @@ th:nth-child(4) { width:20%; }
         <div class="terms">
             <b style="color:#9f4d58;">PAYMENT TERMS</b>
             <ul>
-                <li>Payment is due within 15 days of invoice issuance.</li>
-                <li>Payment can be made via bank transfer or cash on delivery (COD).</li>
-                <li>Advance or delivery-time payment may be required for new or specific orders.</li>
-                <li>Orders must be checked at delivery; no claims will be accepted after signing.</li>
+                <li>Payment within 15 days</li>
+                <li>Bank transfer or COD</li>
+                <li>No claims after delivery</li>
             </ul>
         </div>
 
@@ -478,7 +245,6 @@ th:nth-child(4) { width:20%; }
             <div><span>Sub total</span><span id="sub"></span></div>
             <div><span>Discount</span><span>Rs. 0/-</span></div>
             <div class="highlight"><span>TOTAL</span><span id="totalprint"></span></div>
-            <div><span>Advance</span><span>Rs. 0/-</span></div>
             <div><span>Amount Paid</span><span id="paidprint"></span></div>
             <div class="highlight"><span>Balance</span><span id="balance"></span></div>
         </div>
@@ -489,23 +255,9 @@ th:nth-child(4) { width:20%; }
     </div>
 
     <div class="footer-text">
-    <div>
-        KERASHINE – Pakistan – 
-        <a href="tel:+923268681026">+92 326 8681026</a>
+        KERASHINE – Pakistan – +92 326 8681026 <br>
+        kerashinecosmetics@gmail.com
     </div>
-
-    <div>
-        <a href="mailto:kerashinecosmetics@gmail.com">
-            kerashinecosmetics@gmail.com
-        </a>
-    </div>
-
-    <div>
-        <a href="https://instagram.com/kerashine_cosmetics" target="_blank">
-            @kerashinecosmetics
-        </a>
-    </div>
-</div>
 
 </div>
 
@@ -535,22 +287,13 @@ function addItem(){
     let row = document.createElement("tr");
 
     row.innerHTML = `
+        <td><input type="number" class="qty" value="1"></td>
         <td>
-            <label class="lbl">QTY</label>
-            <input type="number" class="qty" value="1">
-        </td>
-
-        <td>
-            <label class="lbl">PRODUCT</label>
             <select class="desc">
                 ${Object.keys(products).map(p=>`<option>${p}</option>`).join("")}
             </select>
         </td>
-
-        <td>
-            <label class="lbl">PRICE</label>
-            <input type="number" class="price" value="1200">
-        </td>
+        <td><input type="number" class="price" value="1200"></td>
     `;
 
     let select = row.querySelector(".desc");
@@ -573,28 +316,13 @@ function format(v){
 
 function generate(){
 
-    let customerName = document.getElementById("customerName");
-    let phone = document.getElementById("phone");
-    let address = document.getElementById("address");
-    let pname = document.getElementById("pname");
-    let pphone = document.getElementById("pphone");
-    let paddress = document.getElementById("paddress");
-    let sub = document.getElementById("sub");
-    let totalprint = document.getElementById("totalprint");
-    let paidprint = document.getElementById("paidprint");
-    let balance = document.getElementById("balance");
-    let data = document.getElementById("data");
-    let paidInput = document.getElementById("paidInput");
-    let inv = document.getElementById("inv");
-    let date = document.getElementById("date");
-
     pname.innerText = customerName.value;
-    paddress.innerText = address.value;
     pphone.innerText = phone.value;
+    paddress.innerText = address.value;
 
-    inv.innerText = "INV_00" + Math.floor(10 + Math.random() * 80);
+    inv.innerText = Math.floor(10 + Math.random() * 90);
+
     let d = new Date();
-
     date.innerText = d.toLocaleDateString("en-US", {
         month: "short",
         day: "numeric",
@@ -612,8 +340,7 @@ function generate(){
         let t = q*p;
         total += t;
 
-        html += `
-        <tr>
+        html += `<tr>
             <td>${q}</td>
             <td>${d}</td>
             <td>${format(p)}</td>
@@ -628,30 +355,23 @@ function generate(){
     sub.innerText = format(total);
     totalprint.innerText = format(total);
     paidprint.innerText = format(paidVal);
-
-    let balanceVal = total - paidVal;
-    balance.innerText = format(balanceVal);
-}
-
-function printInvoice(){
-    generate();
-    setTimeout(()=>window.print(),200);
+    balance.innerText = format(total - paidVal);
 }
 
 function downloadPDF(){
-    generate(); // ensure data updated
+    generate();
 
-    const element = document.querySelector(".invoice");
+    const element = document.getElementById("invoice");
+    element.style.display = "block";
 
-    const opt = {
-        margin:       0,
-        filename:     'Kerashine_Invoice.pdf',
-        image:        { type: 'jpeg', quality: 1 },
-        html2canvas:  { scale: 3 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    html2pdf().set(opt).from(element).save();
+    html2pdf().set({
+        margin:0,
+        filename:'Kerashine_Invoice.pdf',
+        html2canvas:{scale:3},
+        jsPDF:{unit:'mm', format:'a4'}
+    }).from(element).save().then(()=>{
+        element.style.display = "none";
+    });
 }
 
 function searchCustomer(){
@@ -691,6 +411,8 @@ document.addEventListener("click", function(e){
 });
 
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </body>
 </html>
