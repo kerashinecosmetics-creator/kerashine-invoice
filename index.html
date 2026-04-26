@@ -278,7 +278,9 @@ const products = {
     "Conditioner 250ml":800,
     "Hair Mask 500ml":1200,
     "Hair Mask 300ml":500,
-    "Serum 60ml":400
+    "Serum 60ml":400,
+    "Small Set":3500,
+    "Large Set":5000,
 };
 
 const customers = [
@@ -372,11 +374,19 @@ function downloadPDF(){
     const element = document.getElementById("invoice");
     element.style.display = "block";
 
+    // 🔥 GET VALUES
+    const invoiceNumber = document.getElementById("inv").innerText;
+    const customerName = document.getElementById("pname").innerText
+                            .replace(/\s+/g, "_") // spaces → underscore
+                            .replace(/[^a-zA-Z0-9_]/g, ""); // clean text
+
+    const fileName = `INV_${invoiceNumber}_${customerName}.pdf`;
+
     html2pdf()
     .from(element)
     .set({
         margin: 0,
-        filename: 'Kerashine_Invoice.pdf',
+        filename: fileName, // 🔥 dynamic name
         image: { type: 'jpeg', quality: 1 },
 
         html2canvas: {
@@ -391,14 +401,12 @@ function downloadPDF(){
             orientation: 'portrait'
         },
 
-        // 🔥 MAIN HARD FIX
-        pagebreak: { mode: [] } // ❌ disable all page breaks
+        pagebreak: { mode: [] }
     })
     .toPdf()
     .get('pdf')
     .then(function (pdf) {
 
-        // 🔥 REMOVE ALL EXTRA PAGES
         while (pdf.internal.getNumberOfPages() > 1) {
             pdf.deletePage(2);
         }
