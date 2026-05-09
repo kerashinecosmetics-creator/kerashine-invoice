@@ -197,6 +197,21 @@ table {
     cursor:pointer;
 }
 
+.invoice-header {
+    height:220px;
+}
+
+.invoice-body {
+    min-height:450px;
+}
+
+.invoice-footer {
+    position:absolute;
+    bottom:15mm;
+    left:15mm;
+    right:15mm;
+}
+
 </style>
 </head>
 
@@ -219,61 +234,77 @@ table {
 
 <div class="invoice" id="invoice" style="display:none;">
 
-    <div class="header">
-        <img src="header.png">
-    </div>
+    <!-- HEADER -->
+    <div class="invoice-header">
 
-    <div class="top">
-        <div class="left">
-            <b>Issued to:</b> <span id="pname"></span><br>
-            <span id="pphone"></span><br>
-            <span id="paddress"></span>
+        </div>
+        <div class="header">
+            <img src="header.png">
         </div>
 
-        <div class="right">
-            <div><b>Number:</b> <span id="inv"></span></div>
-            <div><b>Date:</b> <span id="date"></span></div>
-        </div>
-    </div>
+        <div class="top">
+            <div class="left">
+                <b>Issued to:</b> <span id="pname"></span><br>
+                <span id="pphone"></span><br>
+                <span id="paddress"></span>
+            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>QTY</th>
-                <th>DESCRIPTION</th>
-                <th>PRICE</th>
-                <th>TOTAL</th>
-            </tr>
-        </thead>
-        <tbody id="data"></tbody>
-    </table>
-
-    <div class="row2">
-        <div class="terms">
-            <b style="color:#9f4d58;">PAYMENT TERMS</b>
-            <ul>
-                <li>Payment within 15 days</li>
-                <li>Bank transfer or COD</li>
-                <li>No claims after delivery</li>
-            </ul>
+            <div class="right">
+                <div><b>Number:</b> <span id="inv"></span></div>
+                <div><b>Date:</b> <span id="date"></span></div>
+            </div>
         </div>
 
-        <div class="summary">
-            <div><span>Sub total</span><span id="sub"></span></div>
-            <div><span>Discount</span><span>Rs. 0/-</span></div>
-            <div class="highlight"><span>TOTAL</span><span id="totalprint"></span></div>
-            <div><span>Amount Paid</span><span id="paidprint"></span></div>
-            <div class="highlight"><span>Balance</span><span id="balance"></span></div>
+    </div>
+
+    <!-- BODY -->
+    <div class="invoice-body">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>QTY</th>
+                    <th>DESCRIPTION</th>
+                    <th>PRICE</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody id="data"></tbody>
+        </table>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="invoice-footer">
+
+        <div class="row2">
+            <div class="terms">
+                <b style="color:#9f4d58;">PAYMENT TERMS</b>
+                <ul>
+                    <li>Payment within 15 days</li>
+                    <li>Bank transfer or COD</li>
+                    <li>No claims after delivery</li>
+                </ul>
+            </div>
+
+            <div class="summary">
+                <div><span>Sub total</span><span id="sub"></span></div>
+                <div><span>Discount</span><span>Rs. 0/-</span></div>
+                <div class="highlight"><span>TOTAL</span><span id="totalprint"></span></div>
+                <div><span>Amount Paid</span><span id="paidprint"></span></div>
+                <div class="highlight"><span>Balance</span><span id="balance"></span></div>
+            </div>
         </div>
-    </div>
 
-    <div class="footer">
-        <img src="footer.png">
-    </div>
+        <div class="footer">
+            <img src="footer.png">
+        </div>
 
-    <div class="footer-text">
-        KERASHINE – Pakistan – +92 326 8681026 <br>
-        kerashinecosmetics@gmail.com
+        <div class="footer-text">
+            KERASHINE – Pakistan – +92 326 8681026 <br>
+            kerashinecosmetics@gmail.com
+        </div>
+
     </div>
 
 </div>
