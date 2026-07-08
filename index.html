@@ -40,60 +40,83 @@ body {
     background:#9f4d58;
     color:white;
     font-size:15px;
+    cursor:pointer;
 }
 
-/* INVOICE */
+/* INVOICE - FIXED A4 */
 .invoice {
-    width:190mm;
-    min-height:297mm ;
+    width:210mm;
+    /* min-height hata di - yehi empty page ka issue tha */
     margin:auto;
     background:white;
-    padding:18mm 15mm;
+    padding:18mm 15mm 15mm 15mm;
     box-sizing:border-box;
     position:relative;
+    display:flex;
+    flex-direction:column;
+}
+
+.invoice-content {
+    flex:1;
 }
 
 /* HEADER */
 .header img {
     width:100%;
-    margin-bottom:25px;
+    margin-bottom:20px; /* 25 se 20 kiya */
 }
 
 /* TOP */
 .top {
     display:flex;
     justify-content:space-between;
-    margin-bottom:25px;
+    margin-bottom:20px; /* 25 se 20 kiya */
 }
 
 .left {
     width:60%;
-    font-size:14px;
-    line-height:1.6;
+    font-size:13px; /* 14 se 13 kiya */
+    line-height:1.5;
 }
 
 .right {
     width:35%;
     text-align:right;
-    font-size:14px;
+    font-size:13px;
 }
 
-/* TABLE */
+/* TABLE - SPACING KAM KI */
 table {
     width:100%;
-    border-spacing:0 10px;
+    border-spacing:0 6px; /* 10px se 6px kiya */
+    page-break-inside:auto;
+}
+
+thead {
+    display:table-header-group;
+}
+
+tfoot {
+    display:table-footer-group;
+}
+
+tr {
+    page-break-inside:avoid;
+    page-break-after:auto;
 }
 
 th {
     background:#9f4d58;
     color:white;
-    padding:14px;
+    padding:10px; /* 14px se 10px kiya */
     text-align:center;
+    font-size:13px;
 }
 
 td {
     background:#f3f3f3;
-    padding:14px;
+    padding:10px; /* 14px se 10px kiya */
+    font-size:13px;
 }
 
 td:nth-child(1) { text-align:center; }
@@ -104,23 +127,29 @@ td:nth-child(4) { text-align:right; }
 .row2 {
     display:flex;
     justify-content:space-between;
-    margin-top:30px;
+    margin-top:20px; /* 30 se 20 kiya */
+    page-break-inside:avoid;
 }
 
 .terms {
     width:50%;
-    font-size:12px;
+    font-size:11px; /* 12 se 11 kiya */
+}
+
+.terms ul {
+    margin:5px 0;
+    padding-left:18px;
 }
 
 .summary {
     width:280px;
-    font-size:13px;
+    font-size:12px; /* 13 se 12 kiya */
 }
 
 .summary div {
     display:flex;
     justify-content:space-between;
-    margin-bottom:8px;
+    margin-bottom:6px; /* 8 se 6 kiya */
 }
 
 .highlight {
@@ -130,10 +159,9 @@ td:nth-child(4) { text-align:right; }
 
 /* FOOTER */
 .footer {
-    position:absolute;
-    bottom:25mm;
-    left:18mm;
-    width:calc(100% - 36mm);
+    margin-top:25px; /* 30 se 25 kiya */
+    width:100%;
+    page-break-inside:avoid;
 }
 
 .footer img {
@@ -141,11 +169,10 @@ td:nth-child(4) { text-align:right; }
 }
 
 .footer-text {
-    position:absolute;
-    bottom:8mm;
-    left:0;
-    width:100%;
     text-align:center;
+    margin-top:6mm;
+    font-size:10px; /* 11 se 10 kiya */
+    line-height:1.4;
 }
 
 /* PRINT */
@@ -180,14 +207,6 @@ td:nth-child(4) { text-align:right; }
     background:#f5f5f5;
 }
 
-.invoice {
-    page-break-inside: avoid;
-}
-
-table {
-    page-break-inside: avoid;
-}
-
 .delete-btn {
     background:red;
     color:white;
@@ -217,64 +236,63 @@ table {
 </div>
 
 <div class="invoice" id="invoice" style="display: none;">
-
-    <div class="header">
+    <div class="invoice-content">
+        <div class="header">
             <img src="header.png">
-    </div>
-
-    <div class="top">
-        <div class="left">
-            <b>Issued to:</b> <span id="pname"></span><br>
-            <span id="pphone"></span><br>
-            <span id="paddress"></span>
         </div>
 
-        <div class="right">
-            <div><b>Number:</b> <span id="inv"></span></div>
-            <div><b>Date:</b> <span id="date"></span></div>
-        </div>
-    </div>
+        <div class="top">
+            <div class="left">
+                <b>Issued to:</b> <span id="pname"></span><br>
+                <span id="pphone"></span><br>
+                <span id="paddress"></span>
+            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>QTY</th>
-                <th>DESCRIPTION</th>
-                <th>PRICE</th>
-                <th>TOTAL</th>
-            </tr>
-        </thead>
-        <tbody id="data"></tbody>
-    </table>
-
-    <div class="row2">
-        <div class="terms">
-            <b style="color:#9f4d58;">PAYMENT TERMS</b>
-            <ul>
-                <li>Payment within 15 days</li>
-                <li>Bank transfer or COD</li>
-                <li>No claims after delivery</li>
-            </ul>
+            <div class="right">
+                <div><b>Number:</b> <span id="inv"></span></div>
+                <div><b>Date:</b> <span id="date"></span></div>
+            </div>
         </div>
 
-        <div class="summary">
-            <div><span>Sub total</span><span id="sub"></span></div>
-            <div><span>Discount</span><span>Rs. 0/-</span></div>
-            <div class="highlight"><span>TOTAL</span><span id="totalprint"></span></div>
-            <div><span>Amount Paid</span><span id="paidprint"></span></div>
-            <div class="highlight"><span>Balance</span><span id="balance"></span></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>QTY</th>
+                    <th>DESCRIPTION</th>
+                    <th>PRICE</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody id="data"></tbody>
+        </table>
+
+        <div class="row2">
+            <div class="terms">
+                <b style="color:#9f4d58;">PAYMENT TERMS</b>
+                <ul>
+                    <li>Payment within 15 days</li>
+                    <li>Bank transfer or COD</li>
+                    <li>No claims after delivery</li>
+                </ul>
+            </div>
+
+            <div class="summary">
+                <div><span>Sub total</span><span id="sub"></span></div>
+                <div><span>Discount</span><span>Rs. 0/-</span></div>
+                <div class="highlight"><span>TOTAL</span><span id="totalprint"></span></div>
+                <div><span>Amount Paid</span><span id="paidprint"></span></div>
+                <div class="highlight"><span>Balance</span><span id="balance"></span></div>
+            </div>
         </div>
     </div>
 
     <div class="footer">
         <img src="footer.png">
+        <div class="footer-text">
+            KERASHINE – Pakistan – +92 326 8681026 <br>
+            kerashinecosmetics@gmail.com
+        </div>
     </div>
-
-    <div class="footer-text">
-        KERASHINE – Pakistan – +92 326 8681026 <br>
-        kerashinecosmetics@gmail.com
-    </div>
-
 </div>
 
 <script>
@@ -329,10 +347,8 @@ function addItem(){
 
 function deleteRow(btn){
     const row = btn.closest("tr");
-
     const allRows = document.querySelectorAll("#items tr");
 
-    // ❗ FIRST ROW SAFE
     if(allRows.length <= 1){
         alert("At least one item required");
         return;
@@ -393,50 +409,45 @@ function downloadPDF(){
     generate();
 
     const element = document.getElementById("invoice");
-    element.style.display = "block";
+    element.style.display = "flex";
 
-    // 🔥 GET VALUES
     const invoiceNumber = document.getElementById("inv").innerText;
     const customerName = document.getElementById("pname").innerText
-                            .replace(/\s+/g, "_") // spaces → underscore
-                            .replace(/[^a-zA-Z0-9_]/g, ""); // clean text
+                            .replace(/\s+/g, "_")
+                            .replace(/[^a-zA-Z0-9_]/g, "");
 
     const fileName = `INV_${invoiceNumber}_${customerName}.pdf`;
+
+    const originalWidth = document.body.style.width;
+    document.body.style.width = "210mm";
 
     html2pdf()
     .from(element)
     .set({
         margin: 0,
-        filename: fileName, // 🔥 dynamic name
+        filename: fileName,
         image: { type: 'jpeg', quality: 1 },
-
         html2canvas: {
             scale: 2,
-            height: element.offsetHeight,
-            windowHeight: element.offsetHeight
+            useCORS: true,
+            letterRendering: true,
+            windowWidth: 794,
+            width: 794,
+            scrollY: 0 // Scroll fix
         },
-
         jsPDF: {
             unit: 'mm',
             format: 'a4',
             orientation: 'portrait'
         },
-
-        pagebreak: { mode: [] }
-    })
-    .toPdf()
-    .get('pdf')
-    .then(function (pdf) {
-
-        while (pdf.internal.getNumberOfPages() > 1) {
-            pdf.deletePage(2);
-        }
-
+        pagebreak: { mode: ['css', 'legacy'] }
     })
     .save()
     .then(() => {
         element.style.display = "none";
+        document.body.style.width = originalWidth;
     });
+    // deletePage wala code hata diya - wahi empty page ka issue tha
 }
 
 function searchCustomer(){
@@ -446,9 +457,9 @@ function searchCustomer(){
     box.innerHTML = "";
 
     if(!input){
-    box.innerHTML = "";
-    return;
-}
+        box.innerHTML = "";
+        return;
+    }
 
     let filtered = customers
     .filter(c => c.name.toLowerCase().includes(input))
@@ -474,6 +485,10 @@ document.addEventListener("click", function(e){
         document.getElementById("suggestions").innerHTML = "";
     }
 });
+
+window.onload = function(){
+    addItem();
+}
 
 </script>
 
